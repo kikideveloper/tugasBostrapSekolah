@@ -4,7 +4,10 @@
     <head>
         <?php
         session_start();
-        $_SESSION['user'] = "1";
+//        $_SESSION['user'] = "1";
+//if (!isset($_SESSION)){
+    
+//}
         ?>
     </head>
 

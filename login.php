@@ -1,3 +1,10 @@
+<?php
+if (isset($_POST['submit'])){
+    if (trim($_POST['username'] == '' || trim($_POST['password'] == ''))) {
+        
+    }
+}
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -35,18 +42,18 @@
             <div class="login-box-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="../index.html" method="post">
+                <form action="" method="post">
                     <div class="form-group has-feedback">
-                        <input type="email" class="form-control" placeholder="Email">
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        <input type="username" class="form-control" placeholder="Username">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
                         <input type="password" class="form-control" placeholder="Password">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat pull-right">Sign In</button>
+                        <div class="col-xs-4 pull-right">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
