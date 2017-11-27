@@ -1,16 +1,14 @@
-<?php include "lib/class-Db.php"; ?>
-<?php include "main/head.php"; ?>
+<?php
+session_start();
+include "lib/class-Db.php";
+if (!isset($_SESSION['user'])) {
+    $ff->redirect('login.php');
+}
+?>
 <html>
     <head>
-        <?php
-        session_start();
-//        $_SESSION['user'] = "1";
-//if (!isset($_SESSION)){
-    
-//}
-        ?>
+        <?php include "main/head.php"; ?> 
     </head>
-
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
             <header class="main-header">

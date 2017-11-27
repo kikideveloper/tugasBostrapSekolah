@@ -1,7 +1,25 @@
 <?php
-if (isset($_POST['submit'])){
-    if (trim($_POST['username'] == '' || trim($_POST['password'] == ''))) {
-        
+include 'lib/class-Db.php';
+session_start();
+$post = $engine->sant(INPUT_POST);
+$error_message = "Silahkan masukan Username atau Password anda";
+
+if (isset($_SESSION['user'])) {
+    $ff->redirect('index.php');
+}
+
+if (isset($post['submit'])) {
+    if (trim($post['username'] == '' || trim($post['password'] == ''))) {
+        $error_message = "Maaf, Silahkan lengkapi Form login!!";
+    } else {
+        $query = $engine->select("user where username = '{$post['username']}'", "password")->fetch();
+        $pass = $query[0];
+        if (md5($post['password']) == $pass) {
+            $_SESSION['user'] = $post['username'];
+            $ff->redirect('index.php');
+        } else {
+            $error_message = "Maaf, Username atau password anda salah";
+        }
     }
 }
 ?>
@@ -29,9 +47,8 @@ if (isset($_POST['submit'])){
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-
         <!-- Google Font -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <link rel="stylesheet" href="main/googleapis.css">
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
@@ -40,33 +57,29 @@ if (isset($_POST['submit'])){
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-
+                <p class="login-box-msg"><?= $error_message ?></p>
                 <form action="" method="post">
                     <div class="form-group has-feedback">
-                        <input type="username" class="form-control" placeholder="Username">
+                        <input type="username" name="username" class="form-control" placeholder="Username">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
                         <div class="col-xs-4 pull-right">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                            <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-
                 <a href="#">I forgot my password</a><br>
                 <a href="register.html" class="text-center">Register a new membership</a>
-
             </div>
             <!-- /.login-box-body -->
         </div>
         <!-- /.login-box -->
-
         <!-- jQuery 3 -->
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap 3.3.7 -->
@@ -82,7 +95,5 @@ if (isset($_POST['submit'])){
                 });
             });
         </script>
-
-
     </body>
 </html>

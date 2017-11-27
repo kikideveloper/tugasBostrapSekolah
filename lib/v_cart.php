@@ -12,7 +12,7 @@
     session_start();
     if (!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $key => $val) {
-            $q = $odb->select("barang where kode_barang='$key'");
+            $q = $engine->select("barang where kode_barang='$key'");
             $data = $q->fetch();
             $nama_barang = $data['nama_barang'];
             ?>

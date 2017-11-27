@@ -11,7 +11,7 @@
                     <h4 class="box-title">Form Tambah Data Pembelian</h4>
                 </div>
                 <div class="box-body">
-                    <form id="purchase" method="post" action="?p=opembelian" enctype="multipart/form-data">
+                    <form id="purchase" method="post" action="?p=transaksi/pembelian/machine" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Faktur Pembelian</label>
                             <input type="text" name="invoice" class="form-control select2" placeholder="Faktur Pembelian">
@@ -20,7 +20,7 @@
                             <label>Kode Suplier</label>
                             <select class="form-control select2" name="kode_suplier" placeholder="Kode Suplier">
                                 <?php
-                                $query = $odb->select("suplier");
+                                $query = $engine->select("suplier");
                                 while ($suplier = $query->fetch()) {
                                     echo"<option value='$suplier[kode_suplier]' selected>$suplier[nama_suplier]</option>";
                                 }
@@ -56,7 +56,7 @@
                             <div>
                                 <select class="form-control select2" name="kode_barang" placeholder="Nama Barang">
                                     <?php
-                                    $query = $odb->select("barang");
+                                    $query = $engine->select("barang");
                                     while ($barang = $query->fetch()) {
                                         echo"<option value='$barang[kode_barang]' selected>$barang[nama_barang]</option>";
                                     }

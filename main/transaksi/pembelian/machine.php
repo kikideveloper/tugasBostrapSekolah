@@ -20,6 +20,6 @@ include'lib/inc.php';
 	$uppembelian = $odb->update("pembelian","total_harga='$total' where kode_pembelian = '$kode_pembelian'");
 	$ff->alert("Pembelian berhasil");
 	unset($_SESSION['basket']);
-	$ff->redirect("?p=pembelian");
+	$ff->redirect("?p=transaksi/pembelian/index");
 	}
 ?>

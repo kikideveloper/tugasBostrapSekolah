@@ -2,10 +2,10 @@
 <!-- Sidebar user panel -->
 <div class="user-panel">
     <div class="pull-left image">
-        <img src="dist/img/L.jpg" class="img-circle" alt="User Image">
+        <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
     </div>
     <div class="pull-left info">
-        <p>Kenta</p>
+        <p><?=$_SESSION['user']?></p>
         <a href=""><i class="fa fa-circle text-success"></i> Online</a>
     </div>
 </div>

@@ -56,6 +56,6 @@ class Db {
 
 }
 
-$odb = new Db();
+$engine = new Db();
 include "class-Ff.php";
 ?>
